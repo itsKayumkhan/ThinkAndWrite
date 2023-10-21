@@ -3,7 +3,7 @@ import React from "react";
 const Profile = () => {
   return (
     <>
-      <div className="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0">
+      <div className="max-w-4xl flex  items-center flex-wrap m-auto lg:my-10">
         {/*Main Col*/}
         <div
           id="profile"
@@ -21,15 +21,15 @@ const Profile = () => {
             <h1 className="text-3xl font-bold pt-8 lg:pt-0">Your Name</h1>
             <div className="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-blue-600 opacity-25" />
             <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
-              <i class="fa-solid fa-user pe-3"></i> Follower : 30K
+              <i className="fa-solid fa-user pe-3"></i> Follower : 30K
             </p>
             <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
-              <i class="fa-regular fa-images pe-3"></i> Post : 30
+              <i className="fa-regular fa-images pe-3"></i> Post : 30
             </p>
             <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
-              <i class="fa-solid fa-heart pe-3"></i> Like : 700K
+              <i className="fa-solid fa-heart pe-3"></i> Like : 700K
             </p>
-            <p class="py-5 text-sm">
+            <p className="py-5 text-sm">
               Totally optional short description about yourself, what you do and
               so on.
             </p>

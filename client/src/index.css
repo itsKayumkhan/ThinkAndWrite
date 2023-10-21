@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* navbar? */
+ul .active{
+  --tw-text-opacity: 1;
+    color: rgb(29 78 216 / var(--tw-text-opacity)) !important;
+    background: #fff;
+    transition: all .1s;
+}
+
+ul li a:hover {
+    color: rgb(29 78 216 / var(--tw-text-opacity)) !important;
+ transition: all .1s;
+
+}
