@@ -14,6 +14,7 @@ const App = () => {
   return (
     <>
      <BrowserRouter>
+     
      <Toaster/>
      <Navbar/>
      <Routes>

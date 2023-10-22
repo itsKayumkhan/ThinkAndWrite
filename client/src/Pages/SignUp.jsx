@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios"
-import {useNavigate} from "react-router-dom"
-import {toast} from "react-hot-toast"
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 const SignUp = () => {
   const [user, setUser] = useState({
     firstName: "",
@@ -10,26 +10,32 @@ const SignUp = () => {
     password: "",
   });
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const handleSignUp = (e) => {
     setUser({
       ...user,
       [e.target.name]: e.target.value,
     });
-   
   };
 
-  const LetsSignUp =async () =>{
-   const res = await axios.post("http://localhost:8000/signup",user)
+  const LetsSignUp = async () => {
+    try {
+      const res = await axios.post("http://localhost:8000/signup", user);
 
-   if (res.data.success) {
-    toast.success(res.data.message);
+      if (res.data.success) {
+        toast.success(res.data.message);
 
-    navigate("/login");  
-  }
-  }
- 
+        navigate("/login");
+      }
+      else
+      {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      toast.error(res.data.message);
+    }
+  };
 
   return (
     <div>
@@ -60,7 +66,10 @@ const SignUp = () => {
               <div>
                 <div className="flex -mx-3">
                   <div className="w-1/2 px-3 mb-5">
-                    <label htmlFor="firstName" className="text-xs font-semibold px-1">
+                    <label
+                      htmlFor="firstName"
+                      className="text-xs font-semibold px-1"
+                    >
                       First name
                     </label>
                     <div className="flex">
@@ -78,7 +87,10 @@ const SignUp = () => {
                     </div>
                   </div>
                   <div className="w-1/2 px-3 mb-5">
-                    <label htmlFor="lastName" className="text-xs font-semibold px-1">
+                    <label
+                      htmlFor="lastName"
+                      className="text-xs font-semibold px-1"
+                    >
                       Last name
                     </label>
                     <div className="flex">
@@ -98,7 +110,10 @@ const SignUp = () => {
                 </div>
                 <div className="flex -mx-3">
                   <div className="w-full px-3 mb-5">
-                    <label htmlFor="email" className="text-xs font-semibold px-1">
+                    <label
+                      htmlFor="email"
+                      className="text-xs font-semibold px-1"
+                    >
                       Email
                     </label>
                     <div className="flex">
@@ -118,7 +133,10 @@ const SignUp = () => {
                 </div>
                 <div className="flex -mx-3">
                   <div className="w-full px-3 mb-12">
-                    <label htmlFor="password" className="text-xs font-semibold px-1">
+                    <label
+                      htmlFor="password"
+                      className="text-xs font-semibold px-1"
+                    >
                       Password
                     </label>
                     <div className="flex">
@@ -138,7 +156,10 @@ const SignUp = () => {
                 </div>
                 <div className="flex -mx-3">
                   <div className="w-full px-3 mb-5">
-                    <button onClick={LetsSignUp} className="block w-full max-w-xs mx-auto bg-slate-900 hover-bg-slate-700 focus-bg-slate-600 text-white rounded-lg px-3 py-3 font-semibold">
+                    <button
+                      onClick={LetsSignUp}
+                      className="block w-full max-w-xs mx-auto bg-slate-900 hover-bg-slate-700 focus-bg-slate-600 text-white rounded-lg px-3 py-3 font-semibold"
+                    >
                       REGISTER NOW
                     </button>
                   </div>

@@ -1,32 +1,38 @@
 import axios from "axios";
-import React, { useState } from "react";
-import {useNavigate} from 'react-router-dom'
-import {toast} from "react-hot-toast" 
-
+import React, { useContext, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { toast } from "react-hot-toast";
+import { UserContext } from "../Context/UserName";
 
 const Login = () => {
   const [user, setUser] = useState({ email: "", password: "" });
 
-  const navigate = useNavigate()
-  const handelLogin = (e) => {
+  const {setUserName} = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
-  }
+  };
 
   const letsLogin = async (e) => {
     e.preventDefault(); // Fix the typo here
 
     try {
       const res = await axios.post("http://localhost:8000/login", user);
-
       if (res.data.success) {
         toast.success(res.data.message);
-    
-        navigate("/");  
+        sessionStorage.setItem("accessToken",res.data.accessToken);
+        sessionStorage.setItem("refreshToken",res.data.refreshToken);
+        setUserName(res.data.name)
+        navigate("/"); 
+      } else {
+        toast.error(res.data.message);
       }
     } catch (error) {
       console.error(error);
+      toast.error("Something went wrong");
     }
-  }
+  };
 
   return (
     <div>
@@ -43,15 +49,15 @@ const Login = () => {
           <h1 className="text-2xl font-semibold mb-4">Login</h1>
           <div>
             <div className="mb-4">
-              <label htmlFor="username" className="block text-slate-900 font-medium">
+              <label htmlFor="email" className="block text-slate-900 font-medium">
                 Email
               </label>
               <input
                 type="text"
                 name="email"
                 value={user.email}
-                onChange={(e) => handelLogin(e)}
-                id="username"
+                onChange={(e) => handleLogin(e)}
+                id="email"
                 className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-slate-900"
                 autoComplete="off"
               />
@@ -64,7 +70,7 @@ const Login = () => {
               <input
                 type="password"
                 value={user.password}
-                onChange={(e) => handelLogin(e)}
+                onChange={(e) => handleLogin(e)}
                 id="password"
                 name="password"
                 className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-slate-900"
@@ -84,7 +90,7 @@ const Login = () => {
             </div>
 
             <div className="mb-6 text-slate-900 font-bold">
-              <a href="" className="hover:underline">
+              <a href="#" className="hover:underline">
                 Forgot Password?
               </a>
             </div>
@@ -98,7 +104,7 @@ const Login = () => {
           </div>
 
           <div className="mt-6 text-slate-800 text-center">
-            <a href="" className="hover:underline">
+            <a href="#" className="hover:underline">
               Sign up Here
             </a>
           </div>
