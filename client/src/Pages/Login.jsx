@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from "react-hot-toast";
-import { UserContext } from "../Context/UserName";
+import { UserContext } from "../Context/User";
 
 const Login = () => {
   const [user, setUser] = useState({ email: "", password: "" });
@@ -104,9 +104,9 @@ const Login = () => {
           </div>
 
           <div className="mt-6 text-slate-800 text-center">
-            <a href="#" className="hover:underline">
+            <Link to="/signup" className="hover:underline">
               Sign up Here
-            </a>
+            </Link>
           </div>
         </div>
       </div>

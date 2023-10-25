@@ -9,26 +9,32 @@ import Error from "./Pages/Error";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import { Toaster } from "react-hot-toast";
-
+import Protected from "./Pages/Protected";
+import CreateBlog from "./Pages/CreateBlog";
+import "./App.css"
 const App = () => {
   return (
     <>
-     <BrowserRouter>
-     
-     <Toaster/>
-     <Navbar/>
-     <Routes>
-      <Route path="/" element={<Home/>}/>
-      <Route path="/profile" element={<Profile/>}/>
-      <Route path="/contact" element={<Contact/>}/>
-      <Route path="/login" element={<Login/>}/>
-      <Route path="/signup" element={<SignUp/>}/>
+      <BrowserRouter>
+        <Toaster />
+        <Navbar />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
 
-      <Route path="*" element={<Error/>}/>
 
-      
-     </Routes>
-     </BrowserRouter>
+
+          {/* <Route path="/" element={<Protected />}> */}
+            <Route path="" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/create" element={<CreateBlog />} />
+          {/* </Route> */}
+
+
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 };

@@ -160,7 +160,7 @@ const SignUp = () => {
                       onClick={LetsSignUp}
                       className="block w-full max-w-xs mx-auto bg-slate-900 hover-bg-slate-700 focus-bg-slate-600 text-white rounded-lg px-3 py-3 font-semibold"
                     >
-                      REGISTER NOW
+                      REGISTER NOW 
                     </button>
                   </div>
                 </div>
