@@ -57,7 +57,7 @@ const CreateBlog = () => {
   return (
     <div className="w-full flex items-center justify-center h-[80vh] ">
       <div className="main bg-slate-500 w-1/2 rounded p-4 flex flex-col justify-end items-end">
-        <div class="w-full mt-5">
+        <div className="w-full mt-5">
           <label className="flex justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
             <span className="flex items-center space-x-2">
               <svg
@@ -114,7 +114,7 @@ const CreateBlog = () => {
           />
         </div>
         <div
-        onClick={publicPost()} 
+        onClick={publicPost} 
         className="btn text-white bg-slate-700 flex items-center justify-center w-40 rounded mt-3 p-3 cursor-pointer">
           Public
         </div>

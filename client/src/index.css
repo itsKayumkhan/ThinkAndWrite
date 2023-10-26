@@ -32,11 +32,7 @@ ul .active{
     transition: all .1s;
 }
 
-ul li a:hover {
-    color: rgb(29 78 216 / var(--tw-text-opacity)) !important;
- transition: all .1s;
 
-}
 
 a{
   color:white;

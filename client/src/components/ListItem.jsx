@@ -9,9 +9,9 @@ const ListItem = () => {
   const category = searchParams.get("category");
 
   return (
-    <ul className="flex mx-auto items-center justify-center mt-4 bg-white p-3">
-      <li>
-        <NavLink to={`/create?category=${category || ""}`} className="px-2 py-2 rounded text-white me-10 bg-slate-900">
+    <ul className="flex mx-auto items-center justify-center mt-4 bg-white h-12">
+      <li className="h-full bg-black flex items-center justify-center hover:scale-90 hover:rounded-md">
+        <NavLink to={`/create?category=${category || ""}`} className="rounded text-white mx-3">
           Create Blog
         </NavLink>
       </li>

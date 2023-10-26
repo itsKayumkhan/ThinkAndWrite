@@ -4,12 +4,14 @@ function Contact() {
   return (
     <div className="bg-gradient-to-b from-slate-600 to-slate-900 w-full">
       <div className="w-full flex items-center justify-center mt-12">
-        <div className="absolute top-24
-         bg-white shadow rounded py-5 lg:px-20 px-8">
+        <div
+          className="absolute top-24
+         bg-white shadow rounded py-3 lg:px-20 px-3 scale-90"
+        >
           <p className="md:text-3xl text-xl font-bold leading-7 text-center text-gray-700">
             Let’s chat and get a quote!
           </p>
-          <div className="md:flex items-center mt-12">
+          <div className="md:flex items-center mt-5">
             <div className="md:w-72 flex flex-col">
               <label className="text-base font-semibold leading-none text-gray-800">
                 Name
@@ -82,7 +84,7 @@ function Contact() {
             and how we use data as stated
           </p>
           <div className="flex items-center justify-center w-full">
-            <button className="mt-5 text-base font-semibold leading-none text-white py-4 px-10 bg-indigo-700 rounded hover:bg-indigo-600 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none">
+            <button className="mt-5 text-base font-semibold leading-none text-white py-4 px-10 bg-slate-700 rounded hover:bg-slate-600 focus:ring-2 hover:scale-90 focus:ring-offset-2 focus:ring-slate-700 focus:outline-none">
               SUBMIT
             </button>
           </div>

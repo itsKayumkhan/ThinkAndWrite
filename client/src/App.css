@@ -1,6 +1,8 @@
 /* profile  */
 
-
+*{
+  transition: all .2s ease-out;
+}
 
 .share {
    display: flex;
@@ -9,33 +11,34 @@
     scale: .8;
 }
   .share span {
-    /* width: 200px; */
-    /* line-height: 80px; */
-    display: inline-block;
+    z-index: 11;
+    align-items: center;
+    justify-content: center;
     font-weight: 700;
     text-transform: uppercase;
     position: absolute;
-    /* left: 50%; */
-    /* margin-left: -100px; */
     opacity: 1;
+    left: 35%;
     transition: opacity 0.3s ease-in-out;
     pointer-events: none;
+    display: flex;
   }
   .share nav {
     font-size: 0;
+    display: flex;
   }
   .share a {
-    line-height: 80px;
-    width: 80px;
-    text-align: center;
-    display: inline-block;
+    width: 65px;
+    align-items: center;
+    display: flex;
     background-color: #ffffff;
-    color: #ffffff;
+    /* color: #ffffff; */
     overflow: hidden;
     opacity: 1;
     transition: all 0.3s ease-in-out;
-    margin: 0 -20px;
-    box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 13px 10px 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    height: 67px;
   }
   .share a:nth-child(1) {
     border-top-left-radius: 40px;
@@ -65,7 +68,7 @@
   .share:hover a, .share.hover a {
     border-radius: 50%;
     margin: 0 10px;
-    color: #f1ce64;
+    color: black;
     font-size: 28px;
   }
   .share:hover a:hover, .share.hover a:hover {

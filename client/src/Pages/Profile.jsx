@@ -37,28 +37,29 @@ const Profile = () => {
               so on.
             </p>
 
-            <div className="flex">
-              <button className="w-[20%] bg-slate-700 hover:bg-blue-900 text-white font-bold rounded-sxl">
+            <div className="flex items-center">
+              <button className="w-[40%] bg-slate-700 hover:bg-slate-900 text-white font-bold rounded-sxl h-1/4 rounded-xl py-2">
                 Follow
               </button>
-           
-            <div className="share w-[80%]">
-              <span className="">Share</span>
-              <nav className="w-full scale-75">
-                <Link to="/">
-                  <i className="fa fa-twitter" />
-                </Link>
-                <Link to="/">
-                  <i className="fa fa-facebook" />
-                </Link>
-                <Link to="/">
-                  <i className="fa fa-google" />
-                </Link>
-                <Link to="/">
-                  <i className="fa fa-github" />
-                </Link>
-              </nav>
-            </div>
+
+              <div className="share w-[80%] ">
+                <span className="">Share</span>
+                <nav className="w-full scale-75 ">
+                  <Link to="/" >
+                    <i className="fa-brands fa-twitter" />
+                  </Link>
+                  <Link to="/">
+                    <i className="fa-brands fa-facebook-f" />
+                  </Link>
+                  <Link to="/">
+                    <i className="fa-brands fa-google" />
+                  </Link>
+                  <Link to="/">
+                    <i className="fa-brands fa-github" />
+                  </Link>
+                </nav>
+              </div>
+
             </div>
           </div>
         </div>
