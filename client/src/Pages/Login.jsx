@@ -21,8 +21,8 @@ const Login = () => {
       const res = await axios.post("http://localhost:8000/login", user);
       if (res.data.success) {
         toast.success(res.data.message);
-        sessionStorage.setItem("accessToken",res.data.accessToken);
-        sessionStorage.setItem("refreshToken",res.data.refreshToken);
+        sessionStorage.setItem("accessToken",`Bearer ${res.data.accessToken}`);
+        sessionStorage.setItem("refreshToken",`Bearer ${res.data.refreshToken}`);
         setUserName(res.data.name)
         navigate("/"); 
       } else {

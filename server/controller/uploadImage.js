@@ -17,14 +17,13 @@ const uploadImage = (req, res) => {
     return res.status(404).send({ success: false, message: "File not found" });
   }
   const imageUrl = `${url}/file/${req.file.filename}`;
-
+  console.log(imageUrl)
   return res.status(200).send({ imageUrl });
 };
-
+ 
 const getImage = async(req,res)=>{
     try {
        const file = await gfs.files.findOne({filename:req.params.filename});
-
        const readStream = gridFsBucket.openDownloadStream(file._id);
        readStream.pipe(res);
         

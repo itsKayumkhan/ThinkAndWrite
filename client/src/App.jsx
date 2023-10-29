@@ -12,6 +12,8 @@ import { Toaster } from "react-hot-toast";
 import Protected from "./Pages/Protected";
 import CreateBlog from "./Pages/CreateBlog";
 import "./App.css"
+import BlogDetails from "./components/BlogDetails";
+import UpdateBlog from "./Pages/UpdateBlog";
 const App = () => {
   return (
     <>
@@ -29,6 +31,8 @@ const App = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/create" element={<CreateBlog />} />
+            <Route path="/post/details/:_id" element={<BlogDetails />} />
+            <Route path="/post/update/:_id" element={<UpdateBlog />} />
           {/* </Route> */}
 
 

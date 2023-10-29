@@ -4,10 +4,13 @@ import Banner from "../components/Banner";
 import ListItem from "../components/ListItem";
 
 const Home = () => {
+  
   return (
     <div className="w-full min-h-screen mt-5">
-      <Banner/>
-      <ListItem/>
+      <Banner />
+      <ListItem />
+
+      <BlogCard />
     </div>
   );
 };
