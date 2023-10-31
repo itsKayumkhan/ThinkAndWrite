@@ -2,12 +2,12 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from "react-hot-toast";
-import { UserContext } from "../Context/User";
+import { UserContext} from "../Context/User";
 
 const Login = () => {
   const [user, setUser] = useState({ email: "", password: "" });
 
-  const {setUserName} = useContext(UserContext);
+  const {setUserName,setSessionToken} = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -15,16 +15,19 @@ const Login = () => {
   };
 
   const letsLogin = async (e) => {
-    e.preventDefault(); // Fix the typo here
+    e.preventDefault();
 
     try {
       const res = await axios.post("http://localhost:8000/login", user);
       if (res.data.success) {
         toast.success(res.data.message);
-        sessionStorage.setItem("accessToken",`Bearer ${res.data.accessToken}`);
-        sessionStorage.setItem("refreshToken",`Bearer ${res.data.refreshToken}`);
-        setUserName(res.data.name)
-        navigate("/"); 
+        sessionStorage.setItem("accessToken", `Bearer ${res.data.accessToken}`);
+        sessionStorage.setItem("refreshToken", `Bearer ${res.data.refreshToken}`);
+        setUserName(res.data.name);
+        setSessionToken(true);
+        localStorage.setItem("userName", res.data.name);
+        navigate("/");
+
       } else {
         toast.error(res.data.message);
       }

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../Context/User";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const initialPost = {
   title: "",
@@ -16,13 +17,13 @@ const UpdateBlog = () => {
   const [post, setPost] = useState(initialPost);
   const [file, setFile] = useState("");
 
-  const { userName } = useContext(UserContext);
+  const { userName, headers } = useContext(UserContext);
 
   const location = useLocation();
   const navigate = useNavigate();
 
   let { _id } = useParams();
-
+  _id = _id.split(":")[1];
   const handelPost = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
   };
@@ -31,22 +32,31 @@ const UpdateBlog = () => {
     : "https://imgs.search.brave.com/ZWhmb-dHRWtsVjSsHXOUQNDOUUPehfbA8kmlQFTF8z0/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAzLzM1LzE0LzU1/LzM2MF9GXzMzNTE0/NTUwMV84Q3JTSWhV/WUJzRzdGZ0g3WVBI/Rkkwclk1SWViUXlF/Ty5qcGc";
 
   const publicPost = async () => {
-    const headers = {
-      Authorization: sessionStorage.getItem("accessToken"),
-    };
-
-    const res = await axios.put(`http://localhost:8000/post/update/${_id}`,post,{headers});
+    const res = await axios.put(
+      `http://localhost:8000/post/update/${_id}`,
+      post,
+      { headers }
+    );
     if (res.data.success) navigate(`/post/details/${_id}`);
   };
 
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        _id = _id.split(":")[1];
-        const res = await axios.get(`http://localhost:8000/post/details/${_id}`);
-        setPost(res.data.post);
+        const res = await axios.get(
+          `http://localhost:8000/post/details/${_id}`,
+          { headers }
+        );
+        if (res.data.success) {
+          setPost(res.data.post);
+          toast.success(res.data.message);
+        }
+        else
+        toast.error(res.data.message);
       } catch (error) {
         console.log(error);
+        toast.error("Something went wrong");
+
       }
     };
     fetchDetails();
@@ -61,7 +71,7 @@ const UpdateBlog = () => {
 
         //TODO - api call
         const res = await axios.post("http://localhost:8000/file/upload", data);
-        setPost((prevPost) => ({ ...prevPost, picture: res.data.imageUrl }))
+        setPost((prevPost) => ({ ...prevPost, picture: res.data.imageUrl }));
       }
     };
     getImg();
@@ -132,7 +142,7 @@ const UpdateBlog = () => {
           onClick={publicPost}
           className="btn text-white bg-slate-700 flex items-center justify-center w-40 rounded mt-3 p-3 cursor-pointer"
         >
-          Public
+          Update Blog
         </div>
       </div>
     </div>

@@ -1,7 +1,10 @@
 import React from 'react'
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom'
 
 const Error = () => {
+  toast.error("Page is not found please go back");
+
   return (
     <>
        <div className="">

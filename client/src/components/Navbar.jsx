@@ -1,13 +1,23 @@
 import React, { useContext, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/User";
+import { UserPhoto } from "../utils/common.util";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const [userIconClick, setUserIconClick] = useState(false);
   const [toggleNavBar, setToggleNavBar] = useState(false);
 
-  const { userName, setUserName } = useContext(UserContext);
-
+  const { userName, setUserName, sessionToken, setSessionToken } =
+    useContext(UserContext);
+  const navigate = useNavigate();
+  const handelSignOut = () => {
+    localStorage.removeItem("userName");
+    sessionStorage.clear();
+    setUserName(null);
+    setSessionToken(false);
+    setUserIconClick(!userIconClick);
+  };
   return (
     <>
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
@@ -23,24 +33,36 @@ const Navbar = () => {
             </span>
           </NavLink>
           <div className="flex items-center md:order-2 relative">
-            <button
-              type="button"
-              className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-              id="user-menu-button"
-              aria-expanded="false"
-              data-dropdown-toggle="user-dropdown"
-              data-dropdown-placement="bottom"
-            >
-              <span className="sr-only">Open user menu</span>
-              <img
-                className="w-8 h-8 rounded-full"
-                src=""
-                alt="user photo"
-                onClick={() => {
-                  setUserIconClick(!userIconClick);
-                }}
-              />
-            </button>
+            {sessionToken ? (
+              <button
+                type="button"
+                className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 "
+                id="user-menu-button"
+                aria-expanded="false"
+                data-dropdown-toggle="user-dropdown"
+                data-dropdown-placement="bottom"
+              >
+                (
+                <div className="w-8 h-8 outline-none rounded-full bg-white">
+                  <img
+                    className="h-full rounded-full w-full  object-cover"
+                    src={UserPhoto}
+                    alt="user photo"
+                    onClick={() => {
+                      setUserIconClick(!userIconClick);
+                    }}
+                  />
+                </div>
+                ){" "}
+              </button>
+            ) : (
+              <li className="">
+                <Link to="/login" className=" text-xl hover:scale-90">
+                  Login
+                </Link>
+              </li>
+            )}
+
             {/* Dropdown menu */}
             {userIconClick && (
               <div
@@ -58,8 +80,8 @@ const Navbar = () => {
                 <ul className="py-2" aria-labelledby="user-menu-button">
                   <li>
                     <Link
-                      to=""
-                      onClick={() => setUserName(null)}
+                      to="/login"
+                      onClick={handelSignOut}
                       className="flex items-center justify-center hover:scale-90"
                       id="signOut"
                     >
@@ -101,7 +123,7 @@ const Navbar = () => {
             } w-full md:flex md:w-auto md:order-1`}
             id="navbar-user"
           >
-            {!userName ? (
+            {!sessionToken ? (
               ""
             ) : (
               <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">

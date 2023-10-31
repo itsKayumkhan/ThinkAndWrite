@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLocation ,useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/User";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const initialPost = {
   title: "",
@@ -16,7 +17,7 @@ const CreateBlog = () => {
   const [post, setPost] = useState(initialPost);
   const [file, setFile] = useState("");
 
-  const { userName } = useContext(UserContext);
+  const { userName, headers } = useContext(UserContext);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -28,18 +29,23 @@ const CreateBlog = () => {
     ? post.picture
     : "https://imgs.search.brave.com/ZWhmb-dHRWtsVjSsHXOUQNDOUUPehfbA8kmlQFTF8z0/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAzLzM1LzE0LzU1/LzM2MF9GXzMzNTE0/NTUwMV84Q3JTSWhV/WUJzRzdGZ0g3WVBI/Rkkwclk1SWViUXlF/Ty5qcGc";
 
+  const publicPost = async () => {
+  try {
+      const res = await axios.post("http://localhost:8000/create", post, {
+        headers,
+      });
+      if (res.data.success) {
+        toast.success("Blog Created Successfully");
+        navigate("/")
+      } else 
+      toast.error(res.data.message);
+  } catch (error) {
+    toast.error("Something went wrong");
 
-    const publicPost =async()=>{ 
 
-      const headers = {
-        'Authorization': sessionStorage.getItem("accessToken")  
-      };
-    
-      const res  = await axios.post("http://localhost:8000/create",post,{headers});
-      if(res.success) console.log(true)
-      else console.log(false);
-    }
+  }
 
+  };
 
   useEffect(() => {
     const getImg = async () => {
@@ -52,11 +58,10 @@ const CreateBlog = () => {
         const res = await axios.post("http://localhost:8000/file/upload", data);
         post.picture = res.data.imageUrl;
       }
- };
-      getImg();
-      post.categories = location.search?.split("=")[1] || "All";
-      post.username = userName;
-   
+    };
+    getImg();
+    post.categories = location.search?.split("=")[1] || "All";
+    post.username = userName;
   }, [file]);
 
   return (
@@ -119,8 +124,9 @@ const CreateBlog = () => {
           />
         </div>
         <div
-        onClick={publicPost} 
-        className="btn text-white bg-slate-700 flex items-center justify-center w-40 rounded mt-3 p-3 cursor-pointer">
+          onClick={publicPost}
+          className="btn text-white bg-slate-700 flex items-center justify-center w-40 rounded mt-3 p-3 cursor-pointer"
+        >
           Public
         </div>
       </div>
