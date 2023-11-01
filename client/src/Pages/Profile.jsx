@@ -73,13 +73,13 @@ const Profile = () => {
       </div> */}
      < div className="">
       <div className="w-9/12 m-auto  mt-10 flex items-center justify-center">
-        <div className="bg-slate-100 shadow overflow-hidden sm:rounded-lg pb-8">
+        <div className="bg-slate-100 shadow overflow-hidden sm:rounded-lg pb-8 rounded-md">
           <div className="border-t border-gray-200 text-center pt-8">
-            <h1 className="text-9xl font-bold text-purple-400 w-full h-32"><img className="w-full h-full object-contain" src="   https://cdn-icons-png.flaticon.com/512/1680/1680012.png " alt="" /></h1>
-            <h1 className="text-6xl font-medium py-8">Oops! Page in  maintenance</h1>
-            <p className="text-2xl pb-8 px-12 font-medium">Oops! The page you are looking for does not exist. It might have been moved or deleted or On maintenance.</p>
-            <button className="bg-gradient-to-r from-purple-400 to-blue-500 hover:from-pink-500 hover:to-orange-500 text-white font-semibold px-6 py-3 rounded-md mr-6">
-             <Link to="/">Home</Link>
+            <h1 className="text-xl md:text-9xl font-bold text-purple-400 w-full h-32"><img className="w-full h-full object-contain" src="   https://cdn-icons-png.flaticon.com/512/1680/1680012.png " alt="" /></h1>
+            <h1 className="text-xl md:text-6xl font-medium py-8">Oops! Page in  maintenance</h1>
+            <p className="text-md md:text-2xl pb-8 px-12 font-medium">Oops! The page you are looking for does not exist. It might have been moved or deleted or On maintenance.</p>
+            <button className="bg-gradient-to-r from-purple-400 to-blue-500 hover:from-pink-500 hover:to-orange-500 text-white font-semibold md:px-6 md:py-3 px-3 py-2 rounded-md">
+             <Link to="/" className="">Home</Link>
             </button>
          
           </div>

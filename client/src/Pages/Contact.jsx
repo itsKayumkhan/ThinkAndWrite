@@ -2,11 +2,11 @@ import React from "react";
 
 function Contact() {
   return (
-    <div className="bg-gradient-to-b from-slate-600 to-slate-900 w-full">
+    <div className="w-full">
       <div className="w-full flex items-center justify-center mt-12">
         <div
-          className="absolute top-24
-         bg-white shadow rounded py-3 lg:px-20 px-3 scale-90"
+          className="
+         bg-white shadow rounded py-3 md:p-5 lg:px-20 px-3 scale-90"
         >
           <p className="md:text-3xl text-xl font-bold leading-7 text-center text-gray-700">
             Let’s chat and get a quote!

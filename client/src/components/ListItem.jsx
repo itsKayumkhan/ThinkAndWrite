@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { useContext, useEffect } from "react";
-import { NavLink, useSearchParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, NavLink, useSearchParams } from "react-router-dom";
 import { UserContext } from "../Context/User";
 import toast from "react-hot-toast";
 
@@ -8,7 +8,7 @@ const ListItem = () => {
   const ListItems = ["Music", "Movies", "Sports", "Tech", "Fashion"];
   const { post, setPost, headers } = useContext(UserContext);
   const [searchParams] = useSearchParams(); // Invoke useSearchParams
-
+  const [media, setMedia] = useState(false);
   const category = searchParams.get("category");
   const filterCategory = async () => {
     try {
@@ -49,7 +49,7 @@ const ListItem = () => {
   }, [category]);
 
   return (
-    <ul className="flex mx-auto items-center justify-center mt-4 bg-white h-12">
+    <ul className={`flex mx-auto items-center justify-center mt-4 bg-white h-12`}>
       <li className="h-full bg-black flex items-center justify-center hover:scale-90 hover:rounded-md">
         <NavLink
           to={`/create?category=${category || ""}`}
@@ -66,19 +66,34 @@ const ListItem = () => {
           All
         </li>
       </NavLink>
-      {ListItems.map((item, i) => (
-        <li
-          key={i}
-          className="px-4 text-xl font-medium cursor-pointer shadow-white text-black"
-        >
-          <NavLink
-            to={`/?category=${item || ""}`}
-            className="hover:text-blue-500"
+      {media ? (
+        ListItems.map((item, i) => (
+          <li
+            key={i}
+            className="px-4 text-xl font-medium cursor-pointer shadow-white text-black"
           >
-            {item}
-          </NavLink>
-        </li>
-      ))}
+            <NavLink
+              to={`/?category=${item || ""}`}
+              className="hover:text-blue-500"
+            >
+              {item}
+            </NavLink>
+          </li>
+        ))
+      ) : (
+        <select className="px-4 text-xl font-medium cursor-pointer outline-none shadow-white text-black">
+          {ListItems.map((item, i) => (
+            <option value={item} id={i}>
+              <Link
+                to={`/?category=${item || ""}`}
+                className="hover:text-blue-500"
+              >
+                {item}
+              </Link>
+            </option>
+          ))}
+        </select>
+      )}
     </ul>
   );
 };

@@ -25,10 +25,10 @@ const Navbar = () => {
           <NavLink to="/" className="flex items-center">
             <img
               src="https://flowbite.com/docs/images/logo.svg"
-              className="h-8 mr-3"
+              className="h-5 md:h-8 mr-1 md:mr-3"
               alt="Flowbite Logo"
             />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            <span className="self-center md:text-2xl font-semibold whitespace-nowrap dark:text-white">
               ThinkAndWrite
             </span>
           </NavLink>
@@ -127,7 +127,7 @@ const Navbar = () => {
               ""
             ) : (
               <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                <li>
+                <li className="my-3">
                   <NavLink
                     to="/"
                     className="px-2 py-2 rounded text-white"
@@ -136,7 +136,7 @@ const Navbar = () => {
                     Home
                   </NavLink>
                 </li>
-                <li>
+                <li className="my-3">
                   <NavLink
                     to="/profile"
                     className="px-2 py-2 rounded text-white"
@@ -149,7 +149,7 @@ const Navbar = () => {
                     Create Blog
                   </NavLink>
                 </li> */}
-                <li>
+                <li className="my-3">
                   <NavLink
                     to="/contact"
                     className="px-2 py-2 rounded text-white"
