@@ -19,21 +19,19 @@ const SignUp = () => {
     });
   };
 
-  const LetsSignUp = async () => {
+  const LetsSignUp = async (e) => {
+    e.preventDefault()
     try {
       const res = await axios.post("http://localhost:8000/signup", user);
-
-      if (res.data.success) {
+      console.log(res)
+      if (res.status.success) {
         toast.success(res.data.message);
-
         navigate("/login");
-      }
-      else
-      {
+      } else if(res.status === 500 ){
         toast.error(res.data.message);
       }
     } catch (error) {
-      toast.error(res.data.message);
+      toast.error("Something went wrong");
     }
   };
 
@@ -51,19 +49,19 @@ const SignUp = () => {
           style={{ maxWidth: 1000 }}
         >
           <div className="md:flex w-full">
-            <div className="hidden md:block h-full w-1/2 ">
+            <div className="w-2/5 p-5 hidden bg-white">
               <img
                 src="https://img.freepik.com/free-vector/global-data-security-personal-data-security-cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection_1150-37336.jpg?size=626&ext=jpg"
                 alt=""
-                className="h-full"
+                className="h-full w-full object-cover"
               />
             </div>
-            <div className="w-full md:w-1/2 md:px-10 mt-2">
+            <div className="w-[60%] md:px-10 mt-2">
               <div className="text-center mb-10">
                 <h1 className="font-bold text-3xl text-gray-900">REGISTER</h1>
                 <p>Enter your information to register</p>
               </div>
-              <div>
+              <form onSubmit={(e)=>LetsSignUp(e)}>
                 <div className="flex -mx-3">
                   <div className="w-1/2 px-3 mb-5">
                     <label
@@ -77,6 +75,7 @@ const SignUp = () => {
                         <i className="mdi mdi-account-outline text-gray-400 text-lg" />
                       </div>
                       <input
+                        required
                         type="text"
                         name="firstName"
                         value={user.firstName}
@@ -98,6 +97,7 @@ const SignUp = () => {
                         <i className="mdi mdi-account-outline text-gray-400 text-lg" />
                       </div>
                       <input
+                        required
                         type="text"
                         name="lastName"
                         value={user.lastName}
@@ -121,6 +121,7 @@ const SignUp = () => {
                         <i className="mdi mdi-email-outline text-gray-400 text-lg" />
                       </div>
                       <input
+                        required
                         type="email"
                         name="email"
                         value={user.email}
@@ -144,6 +145,7 @@ const SignUp = () => {
                         <i className="mdi mdi-lock-outline text-gray-400 text-lg" />
                       </div>
                       <input
+                        required
                         type="password"
                         name="password"
                         value={user.password}
@@ -157,14 +159,15 @@ const SignUp = () => {
                 <div className="flex -mx-3">
                   <div className="w-full px-3 mb-5">
                     <button
-                      onClick={LetsSignUp}
-                      className="block w-full max-w-xs mx-auto bg-slate-900 hover-bg-slate-700 focus-bg-slate-600 text-white rounded-lg px-3 py-3 font-semibold"
+                    type="submit"
+                      className="block w-full max-w-xs mx-auto bg-slate-900 hover-bg-slate-700 focus-bg-slate-600 text-white rounded-lg px-3 py-3 font-semibold 
+                      hover:bg-slate-700 hover:ring-2"
                     >
-                      REGISTER NOW 
+                      REGISTER NOW
                     </button>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

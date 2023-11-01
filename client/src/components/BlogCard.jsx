@@ -43,14 +43,17 @@ const BlogCard = () => {
               <div className="my-8">
                 <div className=" w-full lg:max-w-full lg:flex ">
                   <div
-                    className="h-48  lg:w-1/4 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+                    className="h-48 relative lg:w-1/4 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
                     title="Mountain"
                   >
                     <img
                       src={item.picture ? item.picture : URL}
                       alt=""
-                      className="object-cover w-full h-full"
+                      className="object-cover w-full h-full z-0"
                     />
+                    <h1 className="absolute px-4 py-1 bg-slate-900 text-white font-bold text-xl shadow-black z-1 inline-flex items-center justify-center mb-2 top-0 w-full bg-opacity-60 left-0">
+                      {item.categories}
+                    </h1>
                   </div>
                   <div className="border-r w-full border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-slate-100 rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                     <div className="mb-8">

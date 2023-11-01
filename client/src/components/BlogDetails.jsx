@@ -44,7 +44,7 @@ const BlogDetails = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.success(res.data.message);
+      toast.error("Something went wrong");
 
     }
   };
@@ -71,10 +71,10 @@ const BlogDetails = () => {
               src={post.picture ? post.picture : URL}
               className="absolute  w-full h-full z-0 object-cover "
             />
-            <div className="p-4 absolute bottom-0 left-0 z-20 w-full">
+            <div className="p-4 break-words absolute bottom-0 left-0 z-20 w-full">
               <a
                 href="#"
-                className="px-4 py-1 bg-slate-900 text-white shadow-inner shadow-white inline-flex items-center justify-center mb-2"
+                className=" px-4 py-1 bg-slate-900 text-white shadow-inner shadow-white inline-flex items-center justify-center mb-2"
               >
                 {post.categories}
               </a>

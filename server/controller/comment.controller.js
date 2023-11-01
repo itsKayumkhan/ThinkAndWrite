@@ -2,14 +2,13 @@ import Comment from "../model/comment.model.js";
 
 export const setComment = async (req, res) => {
   try {
-    console.log(req.data);
     const comment = new Comment(req.body); 
     await comment.save();  
 
-    res.status(200).json({ success: true, message: "comment added" });
+    res.status(200).json({ success: true, message: "comment added" }); 
   } catch (error) {
     console.log(error);
-    res.status(500).json({ success: false, message: "Something went wrong" });
+    res.status(500).json({ success: false, message: "Something went wrong" }); 
   }
 };
 

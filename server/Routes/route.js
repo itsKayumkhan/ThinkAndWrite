@@ -30,8 +30,8 @@ router.get("/post/details/:_id", getSinglePost);
 router.put("/post/update/:_id",authToken, updatePost);
 router.delete("/post/delete/:_id",authToken, deletePost);
 
-router.post("/comment",authToken,setComment)
-router.get("/all/comments/:_id",authToken,getAllComments)
+router.post("/comment",setComment)
+router.get("/all/comments/:_id",getAllComments)
 
 router.get("/auth",authToken)
-export default router;
+export default router;   

@@ -30,21 +30,17 @@ const CreateBlog = () => {
     : "https://imgs.search.brave.com/ZWhmb-dHRWtsVjSsHXOUQNDOUUPehfbA8kmlQFTF8z0/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAzLzM1LzE0LzU1/LzM2MF9GXzMzNTE0/NTUwMV84Q3JTSWhV/WUJzRzdGZ0g3WVBI/Rkkwclk1SWViUXlF/Ty5qcGc";
 
   const publicPost = async () => {
-  try {
+    try {
       const res = await axios.post("http://localhost:8000/create", post, {
         headers,
       });
       if (res.data.success) {
         toast.success("Blog Created Successfully");
-        navigate("/")
-      } else 
-      toast.error(res.data.message);
-  } catch (error) {
-    toast.error("Something went wrong");
-
-
-  }
-
+        navigate("/");
+      } else toast.error(res.data.message);
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
   };
 
   useEffect(() => {
@@ -66,7 +62,7 @@ const CreateBlog = () => {
 
   return (
     <div className="w-full flex items-center justify-center h-[80vh] ">
-      <div className="main bg-slate-500 w-1/2 rounded p-4 flex flex-col justify-end items-end">
+      <div className="main bg-slate-500 lg:w-1/2 rounded p-4 flex flex-col justify-end items-end">
         <div className="w-full mt-5">
           <label className="flex justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
             <span className="flex items-center space-x-2">

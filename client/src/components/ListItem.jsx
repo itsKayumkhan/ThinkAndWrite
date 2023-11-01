@@ -9,6 +9,7 @@ const ListItem = () => {
   const { post, setPost, headers } = useContext(UserContext);
   const [searchParams] = useSearchParams(); // Invoke useSearchParams
   const [media, setMedia] = useState(false);
+  const [listMenu, setListMenu] = useState(false);
   const category = searchParams.get("category");
   const filterCategory = async () => {
     try {
@@ -43,13 +44,30 @@ const ListItem = () => {
       toast.error(res.data.message);
     }
   };
+  useEffect(() => {
+    const checkMedia = () => {
+      if (window.innerWidth < 768) {
+        setMedia(true);
+      } else {
+        setMedia(false); 
+      }
+    };
 
+    checkMedia();
+
+    window.addEventListener("resize", checkMedia);
+    return () => {
+      window.removeEventListener("resize", checkMedia);
+    };
+  }, []);
   useEffect(() => {
     filterCategory();
   }, [category]);
 
   return (
-    <ul className={`flex mx-auto items-center justify-center mt-4 bg-white h-12`}>
+    <ul
+      className={`flex mx-auto items-center justify-center mt-4 bg-white h-12 `}
+    >
       <li className="h-full bg-black flex items-center justify-center hover:scale-90 hover:rounded-md">
         <NavLink
           to={`/create?category=${category || ""}`}
@@ -66,7 +84,7 @@ const ListItem = () => {
           All
         </li>
       </NavLink>
-      {media ? (
+      {!media ? (
         ListItems.map((item, i) => (
           <li
             key={i}
@@ -81,18 +99,55 @@ const ListItem = () => {
           </li>
         ))
       ) : (
-        <select className="px-4 text-xl font-medium cursor-pointer outline-none shadow-white text-black">
-          {ListItems.map((item, i) => (
-            <option value={item} id={i}>
-              <Link
-                to={`/?category=${item || ""}`}
-                className="hover:text-blue-500"
+        <div>
+          <button
+            id="dropdownDefaultButton"
+            data-dropdown-toggle="dropdown"
+            className=" rounded-lg px-5 py-2.5 text-center inline-flex items-center relative text-xl font-semibold text-blue-700"
+            type="button"
+            onClick={() => setListMenu(!listMenu)}
+          >
+           {category}
+            <svg
+              className="w-2.5 h-2.5 ml-2.5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 10 6"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="m1 1 4 4 4-4"
+              />
+            </svg>
+          </button>
+          {listMenu && (
+            <div
+              id="dropdown"
+              className="z-10  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 absolute"
+            >
+              <ul
+                className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                aria-labelledby="dropdownDefaultButton"
               >
-                {item}
-              </Link>
-            </option>
-          ))}
-        </select>
+                {ListItems.map((item, i) => (
+                  <li key={i} 
+                  onClick={() => setListMenu(!listMenu)}className="text-xl border-b ">
+                    <Link
+                      to={`/?category=${item || ""}`}
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
       )}
     </ul>
   );

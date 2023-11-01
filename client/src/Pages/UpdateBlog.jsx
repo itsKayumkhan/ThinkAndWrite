@@ -50,13 +50,10 @@ const UpdateBlog = () => {
         if (res.data.success) {
           setPost(res.data.post);
           toast.success(res.data.message);
-        }
-        else
-        toast.error(res.data.message);
+        } else toast.error(res.data.message);
       } catch (error) {
         console.log(error);
         toast.error("Something went wrong");
-
       }
     };
     fetchDetails();
@@ -81,7 +78,7 @@ const UpdateBlog = () => {
 
   return (
     <div className="w-full flex items-center justify-center h-[80vh] ">
-      <div className="main bg-slate-500 w-1/2 rounded p-4 flex flex-col justify-end items-end">
+      <div className="main bg-slate-500 lg:w-1/2 rounded p-4 flex flex-col justify-end items-end">
         <div className="w-full mt-5">
           <label className="flex justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
             <span className="flex items-center space-x-2">
