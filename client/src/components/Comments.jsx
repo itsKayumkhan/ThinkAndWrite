@@ -51,7 +51,7 @@ const Comments = ({ post }) => {
   }, [comment]);
   return (
     <div>
-      <section className="w-screen lg:w-full flex items-center justify-center ">
+      <section className="w-screen lg:w-full flex items-center justify-center">
         <div className=" py-4  hover:border-blue-200 mb-4 md:mb-0 w-full max-w-screen-md relative">
           <form className="mt-4 bg-slate-800 py-5 px-4 rounded-xl">
             <label htmlFor="comment" className="block">
@@ -84,12 +84,17 @@ focus:outline-none focus:ring-1 bg-gray-50 focus:ring-slate-200 focus:border-sla
               </svg>
             </button>
           </form>
-          <div className="my-4">
-            <small className="text-base font-bold text-white ml-1">
-             {comments.length} comments
-            </small>
-            {comments?.map((user) => (
-              <div className="flex flex-col mt-4 border border-x-0 border-t-0 py-2 w-screen lg:w-full break-words">
+         <div className="pt-3">
+         <small className="pt-4 text-base font-bold text-white ml-1">
+            {comments.length} comments
+          </small>
+         </div>
+          <div className="my-4 flex flex-col-reverse">
+            {comments?.map((user, i) => (
+              <div
+                className="flex flex-col mt-4 border border-x-0 border-t-0 py-2 w-screen lg:w-full break-words"
+                key={i}
+              >
                 <div className="flex flex-row  justify-between py-1 w-full">
                   <div className="flex mr-1 w-[20%]">
                     <div className="items-center justify-center w-12 h-12 mx-auto bg-white rounded-full">
@@ -107,7 +112,9 @@ focus:outline-none focus:ring-1 bg-gray-50 focus:ring-slate-200 focus:border-sla
                         - {new Date(user.date).toDateString()}
                       </span>
                     </div>
-                    <div className="text-sm text-white break-words w-full ">{user.comment}</div>
+                    <div className="text-sm text-white break-words w-full ">
+                      {user.comment}
+                    </div>
                     <div className="flex items-center text-sm mt-1 space-x-3">
                       <a
                         href="#"

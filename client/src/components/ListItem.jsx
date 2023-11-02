@@ -13,14 +13,12 @@ const ListItem = () => {
   const category = searchParams.get("category");
   const filterCategory = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/post/${category}`, {
+      const res = await axios.get(`http://localhost:8000/post/${category || "All"}`, {
         headers,
       });
 
       if (res.status === 200) {
         setPost(res.data.posts);
-        // console.log(res.data.message)
-        toast.success(res.data.message);
       }
       if (!res.data.success) {
         // console.log(res.data.message)

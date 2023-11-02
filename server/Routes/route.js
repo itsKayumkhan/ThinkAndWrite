@@ -19,7 +19,7 @@ const router = express.Router();
 router.post("/signup", signUp);
 router.post("/login", login);     
   
-router.post("/create", authToken, blogUpload);
+router.post("/create", blogUpload);
 
 router.post("/file/upload", uploadFile.single("file"), uploadImage);
 router.get("/file/:filename", getImage);
@@ -27,9 +27,9 @@ router.get("/file/:filename", getImage);
 router.get("/allpost", getAllPost);
 router.get("/post/:category", getPost);
 router.get("/post/details/:_id", getSinglePost);
-router.put("/post/update/:_id",authToken, updatePost);
-router.delete("/post/delete/:_id",authToken, deletePost);
-
+router.put("/post/update/:_id", updatePost);
+router.delete("/post/delete/:_id", deletePost);
+ 
 router.post("/comment",setComment)
 router.get("/all/comments/:_id",getAllComments)
 

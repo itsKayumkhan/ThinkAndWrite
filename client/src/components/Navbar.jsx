@@ -56,11 +56,18 @@ const Navbar = () => {
                 ){" "}
               </button>
             ) : (
-              <li className="">
-                <Link to="/login" className=" text-xl hover:scale-90">
+             <ul className="flex items-center justify-center gap-46">
+               <li className="">
+                <Link to="/login" className="text-xl hover:scale-90">
                   Login
                 </Link>
               </li>
+              <li className="">
+                <Link to="/signup" className="text-xl hover:scale-90">
+                  Sign Up
+                </Link>
+              </li>
+             </ul>
             )}
 
             {/* Dropdown menu */}

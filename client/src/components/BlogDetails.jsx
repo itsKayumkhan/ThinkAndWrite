@@ -100,10 +100,10 @@ const BlogDetails = () => {
                 {userName === post.username ? (
                   <div className="flex items-center justify-center">
                     <Link to={`/post/update/:${post._id}`}>
-                      <i class="fa-regular fa-pen-to-square px-2 text-2xl text-white cursor-pointer "></i>
+                      <i className="fa-regular fa-pen-to-square px-2 text-2xl text-white cursor-pointer "></i>
                     </Link>
                     <Link onClick={fetchDelete}>
-                      <i class="fa-solid fa-trash px-2 text-2xl text-white cursor-pointer "></i>
+                      <i className="fa-solid fa-trash px-2 text-2xl text-white cursor-pointer "></i>
                     </Link>
                   </div>
                 ) : (
