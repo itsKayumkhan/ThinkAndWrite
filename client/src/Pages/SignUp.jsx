@@ -24,11 +24,9 @@ const SignUp = () => {
     try {
       const res = await axios.post("http://localhost:8000/signup", user);
       console.log(res)
-      if (res.status.success) {
+      if (res.data.success) {
         toast.success(res.data.message);
         navigate("/login");
-      } else if(res.status === 500 ){
-        toast.error(res.data.message);
       }
     } catch (error) {
       toast.error("Something went wrong");

@@ -53,7 +53,7 @@ const Navbar = () => {
                     }}
                   />
                 </div>
-                ){" "}
+                )
               </button>
             ) : (
              <ul className="flex items-center justify-center gap-46">
